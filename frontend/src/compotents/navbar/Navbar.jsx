@@ -23,11 +23,11 @@ const Navbar=()=> {
                         </li>
                         
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Login</a>
+                            <a className="nav-link" href="/login">Login</a>
                         </li>
                         
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Register</a>
+                            <a className="nav-link" href="/register">Register</a>
                         </li>
                         
                     </ul>

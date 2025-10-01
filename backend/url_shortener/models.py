@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class My_links(models.Model):
+    sourse_link=models.CharField(max_length=300)
+    new_link=models.CharField(max_length=300)
+

@@ -1,5 +1,5 @@
 from django.db import models
-from .urls import generate_new_link
+from .utils import generate_new_link
 
 class My_links(models.Model):
     sourse_link=models.CharField(max_length=300)

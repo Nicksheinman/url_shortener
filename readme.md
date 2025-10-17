@@ -13,4 +13,5 @@ Create a small URL shortener application.
 2. create links page and register page [x]
 
 ##backend
-1. create superuser and utils file [x]
+1. create superuser and utils.py file [x]
+2. create link model and API endpoints [x]

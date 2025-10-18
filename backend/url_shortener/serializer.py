@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import My_links
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate
 
 class LinkSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,3 +27,17 @@ class RegisterSerializer(serializers.Serializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
+class LoginSerializer(serializers.Serializer):
+    username=serializers.CharField
+    password=serializers.CharField(write_only=True)
+    def validate(self, attrs):
+        user=authenticate(
+            request=self.context.get('request'),
+            username=attrs['username'],
+            password=attrs['password'],
+        )
+        if not user:
+            raise serializers.ValidationError("user do not exist")
+        attrs['user']=user
+        return attrs

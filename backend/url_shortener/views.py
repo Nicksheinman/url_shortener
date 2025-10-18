@@ -1,8 +1,9 @@
 from .models import My_links
-from .serializer import LinkSerializer, RegisterSerializer
+from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.contrib.auth import login
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 
@@ -32,3 +33,13 @@ class GetCSRF(APIView):
     
     def get(self, reguest):
         return Response({"success":"CSRF cookie set"})
+    
+class LoginView(APIView):
+    permission_classes=[ permissions.AllowAny]
+    
+    def post(self, request):
+        serializer=LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            login(request=request, user=serializer.validated_data['user'])
+            return Response('login is completed', status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

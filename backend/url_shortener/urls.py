@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LinkViewSet, RegisterUser, GetCSRF
+from .views import LinkViewSet, RegisterUser, GetCSRF, LoginView
 from django.urls import include
 from rest_framework.routers import DefaultRouter
 router=DefaultRouter()
@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls')),
     path('register/',RegisterUser.as_view(), name='register'),
-    path('csrf/', GetCSRF.as_view(), name="cookie")
+    path('login/',LoginView.as_view(), name='login'),
+    path('csrf/', GetCSRF.as_view(), name="cookie"),
 ]

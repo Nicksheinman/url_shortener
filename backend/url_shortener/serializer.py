@@ -29,9 +29,10 @@ class RegisterSerializer(serializers.Serializer):
         return user
     
 class LoginSerializer(serializers.Serializer):
-    username=serializers.CharField
+    username=serializers.CharField()
     password=serializers.CharField(write_only=True)
     def validate(self, attrs):
+        print(attrs)
         user=authenticate(
             request=self.context.get('request'),
             username=attrs['username'],

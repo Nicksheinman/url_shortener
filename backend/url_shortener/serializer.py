@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import My_links
+from .models import My_links, Anonim_link
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
@@ -9,6 +9,13 @@ class LinkSerializer(serializers.ModelSerializer):
         fields=['id', 'user', 'sourse_link', 'new_link']
         read_only_fields=['id', 'user', 'new_link']
         
+class AnonimLinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Anonim_link
+        fields=['sourse_link', 'new_link']
+        read_only_fields=['new_link']
+
+    
 class RegisterSerializer(serializers.Serializer):
     username=serializers.CharField()
     password=serializers.CharField(write_only=True)
@@ -42,3 +49,4 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("user do not exist")
         attrs['user']=user
         return attrs
+

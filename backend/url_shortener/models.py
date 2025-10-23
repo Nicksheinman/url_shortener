@@ -9,4 +9,10 @@ class My_links(models.Model):
     def __str__(self):
         return self.new_link
     
-
+class Anonim_link(models.Model):
+    sourse_link=models.CharField(max_length=300)
+    new_link=models.CharField(max_length=300, default=generate_new_link)
+    
+    session_key=models.CharField(max_length=40, db_index=True, unique=True)
+    def __str__(self):
+        return self.new_link

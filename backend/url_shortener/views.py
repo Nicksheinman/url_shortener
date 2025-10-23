@@ -1,7 +1,7 @@
-from .models import My_links
-from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer
-from rest_framework import viewsets, status, permissions, authentication
-from .utils import CsrfExemptSessionAuthentication
+from .models import My_links, Anonim_link
+from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer
+from .permissions import AnonimPermssion
+from rest_framework import viewsets, status, permissions, authentication, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication
@@ -53,3 +53,27 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({'message':'Logged out'})
+    
+    
+class AnonimSession(APIView):
+    permission_classes=[ permissions.AllowAny]
+    
+    def get(self, request):
+        
+        if request.session.session_key is None:
+            request.session['anonim']=True
+            return Response({'message':'session created'})
+        return Response({'message':'already have a session'})
+    
+
+class AnonimLinkView(generics.ListCreateAPIView):
+    serializer_class=AnonimLinkSerializer
+    permission_classes=[AnonimPermssion]
+    
+    def perform_create(self, serializer):
+        serializer.save(session_key=self.request.session.session_key)
+    
+    def get_queryset(self):
+        print(self.request.session.session_key)
+        return Anonim_link.objects.filter(session_key=self.request.session.session_key)
+

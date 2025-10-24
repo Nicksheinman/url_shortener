@@ -71,9 +71,10 @@ class AnonimLinkView(generics.ListCreateAPIView):
     permission_classes=[AnonimPermssion]
     
     def perform_create(self, serializer):
-        serializer.save(session_key=self.request.session.session_key)
+        if Anonim_link.objects.filter(session_key=self.request.session.session_key):
+            Anonim_link.objects.filter(session_key=self.request.session.session_key).delete()
+        serializer.save(session_key=self.request.session.session_key, expires_at=self.request.session.get_expiry_date())
     
     def get_queryset(self):
-        print(self.request.session.session_key)
         return Anonim_link.objects.filter(session_key=self.request.session.session_key)
 

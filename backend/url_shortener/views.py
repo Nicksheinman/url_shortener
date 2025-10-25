@@ -8,6 +8,7 @@ from rest_framework.authentication import SessionAuthentication
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 
 class LinkViewSet(viewsets.ModelViewSet):
     queryset=My_links.objects.all()
@@ -78,3 +79,16 @@ class AnonimLinkView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Anonim_link.objects.filter(session_key=self.request.session.session_key)
 
+class RedirectView(APIView):
+    permission_classes=[ permissions.AllowAny]
+    
+    def get(self, request, code):
+        obj=My_links.objects.filter(new_link=code).first()
+        
+        if obj:
+            return HttpResponseRedirect(obj.sourse_link)
+        obj_a=Anonim_link.objects.filter(new_link=code).first()
+        if obj_a:
+            return HttpResponseRedirect(obj_a.sourse_link)
+        else:
+            return HttpResponseNotFound("URl not found")

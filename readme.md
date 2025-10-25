@@ -15,3 +15,8 @@ Create a small URL shortener application.
 ##backend
 1. create superuser and utils.py file [x]
 2. create link model and API endpoints [x]
+3. create login and register view/url for django user [x]
+4. create anonim short link model []
+5. create anonim session and view for anonim link []
+6. finishing backend developing by creating base62_encode function and view/url for redirect []
+

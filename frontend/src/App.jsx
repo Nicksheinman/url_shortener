@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import getSCRF from './api/auth/csrf';
 import './App.css'
 import Navbar from './compotents/navbar/navbar'
 import { Route, Routes } from "react-router-dom";
@@ -8,6 +7,8 @@ import HomePage from './compotents/home/homePage'
 import MyLinks from './compotents/myLinks/myLinks'
 import Register from './compotents/user/register'
 import Login from './compotents/user/login'
+
+
 
 function App() {
   const [count, setCount] = useState(0)

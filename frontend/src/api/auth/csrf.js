@@ -1,7 +1,7 @@
-import axios from "axios"
+import api from "../api"
 
 const getSCRF=()=>{
-    axios.get('http://127.0.0.1:8000/api/csrf/')
+    api.get('/api/csrf/')
 }
 
 

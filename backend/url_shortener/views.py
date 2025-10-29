@@ -71,6 +71,7 @@ class AnonimLinkView(generics.ListCreateAPIView):
     serializer_class=AnonimLinkSerializer
     permission_classes=[AnonimPermssion]
     
+    
     def perform_create(self, serializer):
         if Anonim_link.objects.filter(session_key=self.request.session.session_key):
             Anonim_link.objects.filter(session_key=self.request.session.session_key).delete()

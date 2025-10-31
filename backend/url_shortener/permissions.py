@@ -5,4 +5,8 @@ class AnonimPermssion(BasePermission):
     message='Has to have session'
     
     def has_permission(self, request, view):
-        return bool(request.session.session_key)
+        if not request.session.session_key:
+            request.session.create()
+            request.session['alive'] = True
+            request.session.save()
+        return request.COOKIES

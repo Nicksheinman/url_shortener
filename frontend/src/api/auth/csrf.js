@@ -1,7 +1,7 @@
 import api from "../api"
 
 const getSCRF=()=>{
-    api.get('/api/csrf/')
+    api.get('/csrf/')
 }
 
 

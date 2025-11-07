@@ -1,7 +1,6 @@
-import React from 'react'
 import registerAPI from '../../api/user/register'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { MyContext } from '../context/provider'
 
 
 const Register = () => {
@@ -10,7 +9,7 @@ const Register = () => {
     const [secondPassword, setSecondPassword]= useState("");
     const [message, setMessage]=useState("");
     
-    const navigate=useNavigate();
+    const {navigate}=useContext(MyContext);
 
     const registerFunc=async (e)=>{
         e.preventDefault()

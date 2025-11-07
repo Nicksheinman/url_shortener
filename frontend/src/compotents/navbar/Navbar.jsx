@@ -1,6 +1,10 @@
-
+import { MyContext } from "../context/provider"
+import { useContext } from "react"
 
 const Navbar=()=> {
+    const {user}=useContext(MyContext)
+    
+
     return (
         <nav className="navbar navbar-expand-lg bg-primary">
             <div className="container-fluid">
@@ -17,18 +21,32 @@ const Navbar=()=> {
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
-                        
+
+                        {user && 
                         <li className="nav-item">
                             <a className="nav-link" href="/myLinks">Links</a>
                         </li>
+                        }
                         
+                        {user!=true && 
                         <li className="nav-item">
                             <a className="nav-link" href="/login">Login</a>
                         </li>
-                        
+                        }
+
+                        {user!=true && 
                         <li className="nav-item">
                             <a className="nav-link" href="/register">Register</a>
                         </li>
+                        }
+                        
+                        {
+                            user && 
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/logout">Logout</a>
+                                </li>
+                            
+                        }
                         
                     </ul>
                 </div>

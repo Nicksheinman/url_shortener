@@ -2,11 +2,12 @@ import LinkShow from './linkShow'
 import postAnonimLink from '../../api/link/anonimLinkPOST'
 import { useEffect, useState } from 'react'
 
+
 const HomePage = () => {
   const [inputUrl, setInputUrl]=useState('')
   
   const [shortUrl, setShortUrl]=useState()
-
+  
   const urlSend=async ()=>{
     if (inputUrl.startsWith('https://') && inputUrl.length>8) 
       {const anonim=await postAnonimLink(inputUrl)

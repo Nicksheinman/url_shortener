@@ -93,3 +93,13 @@ class RedirectView(APIView):
             return HttpResponseRedirect(obj_a.sourse_link)
         else:
             return HttpResponseNotFound("URl not found")
+        
+        
+class checkLogin(APIView):
+    permission_classes=[ permissions.AllowAny]
+    def get(self, request):
+        if request.user.is_authenticated:
+            return Response({'message':True})
+        else:
+            return Response({'message':False})
+    

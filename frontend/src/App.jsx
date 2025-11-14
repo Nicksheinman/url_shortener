@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import getSCRF from './api/auth/csrf';
 import './App.css'
 import Navbar from './compotents/navbar/navbar'
 import { Route, Routes } from "react-router-dom";
@@ -8,10 +6,10 @@ import MyLinks from './compotents/myLinks/myLinks'
 import Register from './compotents/user/register'
 import Login from './compotents/user/login'
 import Logout from './compotents/user/logout';
-
+      
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>

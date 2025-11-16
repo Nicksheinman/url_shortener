@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import linkGet from '../../api/link/linkGet.Js'
-
+import linkDelete from '../../api/link/linkDelete'
 
 
 const MyLinks = () => {
@@ -11,6 +11,11 @@ const MyLinks = () => {
     setData(data)
     
   }
+
+  const deleteLink=async (id)=> {
+    linkDelete(id);
+    allLinks();
+  }
   useEffect(()=>{allLinks()},[])
   return (
     <div className='container-sm mt-5'>
@@ -20,7 +25,7 @@ const MyLinks = () => {
               <li className='list-group-item d-flex justify-content-between align-items-center' key={link['id']}>
                 <a className='text-truncate d-inline-block' style={{maxWidth: "200px"}} href={link['sourse_link']}>{link['sourse_link']}</a>
                 <a href={`http://127.0.0.1:8000/api/${link["new_link"]}`}>http://127.0.0.1:8000/api/{link["new_link"]}</a>
-                <div className='btn btn-primary'>delete</div>
+                <div className='btn btn-primary' id={link['id']}  onClick={e=>{deleteLink(e.target.id)}}>delete</div>
               </li>
          
           ))}

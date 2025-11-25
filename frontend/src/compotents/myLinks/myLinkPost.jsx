@@ -13,8 +13,11 @@ const MyLinkPost=({setMessage, allLinks})=>{
                 allLinks()
             }
             else {
-                setMessage("something went wrong")
+                setMessage("Something went wrong")
             }
+        }
+        else {
+            setMessage("You need to fill out the full URL")
         }
     }
     

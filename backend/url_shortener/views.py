@@ -1,5 +1,5 @@
-from .models import My_links, Anonim_link
-from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer
+from .models import My_links, Anonim_link, EmailVertification
+from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer, ConfirmRegistartionSerializer
 from .permissions import AnonimPermssion
 from rest_framework import viewsets, status, permissions, authentication, generics
 from rest_framework.response import Response
@@ -9,6 +9,12 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseNotFound, HttpResponseRedirect
+from .mail.send_email import send_email
+from django.contrib.auth.models import User
+
+
+
+
 
 class LinkViewSet(viewsets.ModelViewSet):
     queryset=My_links.objects.all()
@@ -25,9 +31,32 @@ class RegisterUser(APIView):
     def post(self, request):
         serializer=RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            user=serializer.save()
+            user.is_active=False
+            user.save()
+            print(user.email)
+            print(user)
+            send_email(user=user)
             return Response({'message':'user created'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class RegisterVertify(APIView):
+    permission_classes=[permissions.AllowAny]
+    def post(self, request):
+        serializer=ConfirmRegistartionSerializer(data=request.data)
+        if serializer.is_valid():
+            token=serializer.validated_data['token']
+            try:
+                vertification=EmailVertification.objects.get(token=token)
+            except:
+                return HttpResponseNotFound('this token do not exist')
+            vertification.is_verificated=True
+            vertification.save()
+            user=vertification.user
+            user.is_active=True
+            user.save()
+            return Response('user is active')
+        
 
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')

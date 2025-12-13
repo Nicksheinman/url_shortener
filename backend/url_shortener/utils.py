@@ -1,5 +1,7 @@
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
+
+
 def base62_encode(num:int)->str:
     if num == 0:
         return ALPHABET[0]
@@ -12,3 +14,4 @@ def base62_encode(num:int)->str:
 
 def generate_new_link():
     return
+

@@ -5,35 +5,43 @@ import { MyContext } from '../context/provider'
 
 const Register = () => {
     const [username, setUsername]= useState("");
+    const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
     const [secondPassword, setSecondPassword]= useState("");
     const [message, setMessage]=useState("");
+    const [buttonCheck, setButtonCheck]=useState(false)
     
-    const {navigate}=useContext(MyContext);
+
 
     const registerFunc=async (e)=>{
         e.preventDefault()
-        if (username.length>=5 && password===secondPassword && password>=7) {
-            const newMessage=await registerAPI(username, password, secondPassword).catch()
+        if (username.length>=5 && password===secondPassword && password>=7 &&buttonCheck===false) {
+            setButtonCheck(true)
+            const newMessage=await registerAPI(username,email ,password, secondPassword).catch()
             if (newMessage===true) {
-                navigate('/login')
+                setMessage('Check your email to confirm your registration.')
             }
             else {
                 setMessage(newMessage)
+                setButtonCheck(false)
+
             }
         }
         else if (password!=secondPassword) {
             setMessage('password didnt match')
+            setButtonCheck(false)
             return
         }
         else if (password<=7) {
             setMessage("The password must contain at least 8 characters")
+            setButtonCheck(false)
             return
         }
-        else {
+        else if(username<=4) {
             setMessage("The username must contain at least 5 characters")
+            setButtonCheck(false)
         }
-
+        return
     }
 
 
@@ -46,6 +54,10 @@ const Register = () => {
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
                 <input className="form-control" onChange={e=>{setUsername(e.target.value)}}/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email" className="form-control" onChange={e=>{setEmail(e.target.value)}}/>
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>

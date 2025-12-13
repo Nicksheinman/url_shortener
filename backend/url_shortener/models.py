@@ -35,3 +35,10 @@ class Anonim_link(models.Model):
                 super().save(update_fields=['new_link'])
         else:
             super().save(*args,**kwargs)
+
+class EmailVertification(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE ,max_length=300)
+    token=models.CharField(max_length=300)
+    is_verificated=models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    

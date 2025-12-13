@@ -18,6 +18,7 @@ class AnonimLinkSerializer(serializers.ModelSerializer):
     
 class RegisterSerializer(serializers.Serializer):
     username=serializers.CharField()
+    email=serializers.EmailField()
     password=serializers.CharField(write_only=True)
     second_password=serializers.CharField(write_only=True)
     def validate_username(self, value):
@@ -30,10 +31,16 @@ class RegisterSerializer(serializers.Serializer):
         return attrs
     def create(self, validated_data):
         validated_data.pop('second_password')
-        user=User(username=validated_data['username'])
+        user=User(
+            username=validated_data['username'],
+            email=validated_data['email'],
+        )
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class ConfirmRegistartionSerializer(serializers.Serializer):
+    token=serializers.CharField()
     
 class LoginSerializer(serializers.Serializer):
     username=serializers.CharField()

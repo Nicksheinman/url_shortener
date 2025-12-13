@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import LinkViewSet, RegisterUser, GetCSRF, LoginView, LogoutView, AnonimLinkView, AnonimSession, RedirectView, checkLogin
+from .views import LinkViewSet, RegisterUser, GetCSRF, LoginView, LogoutView, AnonimLinkView, AnonimSession, RedirectView, checkLogin, RegisterVertify
 from django.urls import include
 from rest_framework.routers import DefaultRouter
 router=DefaultRouter()
@@ -16,4 +16,5 @@ urlpatterns = [
     path('anonimLink/',AnonimLinkView.as_view(), name="anonimLink" ),
     re_path(r'^(?P<code>[0-9A-Za-z]+)$', RedirectView.as_view(), name='redirect'),
     path('check/',checkLogin.as_view(), name="check" ),
+    path('register_vertify/', RegisterVertify.as_view(), name='registerVertify')
 ]

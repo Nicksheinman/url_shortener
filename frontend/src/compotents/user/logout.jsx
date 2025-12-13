@@ -4,11 +4,15 @@ import { MyContext } from "../context/provider";
 
 
 const Logout=()=>{
-    const {navigate}=useContext(MyContext)
+    const {navigate, setUser}=useContext(MyContext)
 
     useEffect(()=>{
-        logoutAPI()
-        navigate('/')
+        const log=async()=>{
+            await logoutAPI()
+            setUser(false)
+            navigate('/')
+        }
+        log()
     }, [])
 }
 

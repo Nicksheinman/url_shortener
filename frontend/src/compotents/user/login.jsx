@@ -26,6 +26,11 @@ const Login = () => {
       
     }
   }
+  const forgotPassword=(e)=> {
+    e.preventDefault()
+    navigate('/forgotPassword')
+
+  }
 
 
   return (
@@ -40,7 +45,8 @@ const Login = () => {
                 <label htmlFor="Password" className="form-label">Password</label>
                 <input type="password" className="form-control" onChange={e=>{setPassword(e.target.value)}}/>
             </div>
-            <button type="submit" className="btn btn-primary">Login</button>
+            <button type="submit" className="btn btn-primary">Login</button><br></br>
+            <button type="submit" className="btn btn-primary" onClick={e=>{forgotPassword(e)}}>Forgot your password?</button>
         </form>
     </div>
   )

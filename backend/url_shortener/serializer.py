@@ -40,7 +40,7 @@ class RegisterSerializer(serializers.Serializer):
         return user
 
 class ConfirmRegistartionSerializer(serializers.Serializer):
-    token=serializers.CharField()
+    token=serializers.CharField(write_only=True)
     
 class LoginSerializer(serializers.Serializer):
     username=serializers.CharField()
@@ -57,3 +57,5 @@ class LoginSerializer(serializers.Serializer):
         attrs['user']=user
         return attrs
 
+class PasswordMailSerializer(serializers.Serializer):
+    email=serializers.CharField(write_only=True)

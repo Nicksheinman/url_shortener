@@ -9,10 +9,10 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseNotFound, HttpResponseRedirect
-from .mail.send_email import send_email
+from .mail.send_email import send_email, send_email_password
 from django.contrib.auth.models import User
-
-
+from django.db import IntegrityError
+from rest_framework.exceptions import ValidationError
 
 
 
@@ -31,7 +31,12 @@ class RegisterUser(APIView):
     def post(self, request):
         serializer=RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            user=serializer.save()
+            try:
+                user = serializer.save()
+            except IntegrityError:
+                raise ValidationError({
+                    "email": "User with this email already exists."
+                })
             user.is_active=False
             user.save()
             print(user.email)

@@ -1,5 +1,5 @@
 from .models import My_links, Anonim_link, EmailVertification
-from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer, ConfirmRegistartionSerializer
+from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer, ConfirmRegistartionSerializer, PasswordMailSerializer
 from .permissions import AnonimPermssion
 from rest_framework import viewsets, status, permissions, authentication, generics
 from rest_framework.response import Response
@@ -39,8 +39,6 @@ class RegisterUser(APIView):
                 })
             user.is_active=False
             user.save()
-            print(user.email)
-            print(user)
             send_email(user=user)
             return Response({'message':'user created'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -68,7 +66,7 @@ class RegisterVertify(APIView):
 class GetCSRF(APIView):
     permission_classes=[ permissions.AllowAny]
     
-    def get(self, reguest):
+    def get(self, request):
         return Response({"success":"CSRF cookie set"})
     
 class LoginView(APIView):
@@ -137,3 +135,19 @@ class checkLogin(APIView):
         else:
             return Response({'message':False})
     
+
+class passwordChangeSendEmail(APIView):
+    permission_classes=[ permissions.AllowAny]
+    
+    def post(self, request):
+        serializer=PasswordMailSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data['email']
+        
+        try:
+            user=User.objects.get(email=email)
+            send_email_password(user=user)
+            return Response(status=200)
+        
+        except:
+            return Response(status=200)

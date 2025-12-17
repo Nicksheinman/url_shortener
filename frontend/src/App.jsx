@@ -8,6 +8,7 @@ import Login from './compotents/user/login'
 import Logout from './compotents/user/logout';
 import Email_confirm from './compotents/user/email_confirm';
 import ForgotPassword from './compotents/user/forgotPassword';
+import NewPassword from './compotents/user/newPassword';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/email_confirm' element={<Email_confirm/>}/>
         <Route path='/forgotPassword' element={<ForgotPassword/>}/>
+        <Route path='/newPassword' element={<NewPassword/>}/>
       </Routes>
     </>
   )

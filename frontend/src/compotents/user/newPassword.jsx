@@ -1,5 +1,5 @@
 import { useState } from "react"
-import passwordChangeEmail from "../../api/user/passwordChangeEmail"
+import passwordChangePost from "../../api/user/passwordChangePost";
 
 
 
@@ -7,15 +7,34 @@ const NewPassword=()=>{
     const [password, setPassword]= useState("");
     const [secondPassword, setSecondPassword]= useState("");
     const [message, setMessage]=useState("")
-
+    const [buttonCheck, setButtonCheck]= useState("")
+    
     const passwordSubmit=async (e)=>{
         e.preventDefault()
+        if (password===secondPassword && password.length>=7 &&buttonCheck==false) {
+            setButtonCheck(true)
+            const token=new URLSearchParams(window.location.search).get('token');
+            const newMessage=await passwordChangePost(token ,password, secondPassword).catch()
+            if (newMessage===true) {
+                setMessage('Your password has been successfully changed. You can now log in to your account.')
+            }
+            else {
+                setMessage(newMessage)
+                setButtonCheck(false)
 
-        if (emailP) {
-            passwordChangeEmail(emailP)
-            setMessage('If the email address is registered, you will receive an email with further instructions.')
+            }
         }
-    }
+        else if (password!=secondPassword) {
+            setMessage('password didnt match')
+            setButtonCheck(false)
+            return
+        }
+        else if (password<=7) {
+            setMessage("The password must contain at least 8 characters")
+            setButtonCheck(false)
+            return
+        }
+        return}
 
 
 

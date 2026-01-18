@@ -37,8 +37,12 @@ class Anonim_link(models.Model):
             super().save(*args,**kwargs)
 
 class EmailVertification(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE ,max_length=300)
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
     token=models.CharField(max_length=300)
     is_verificated=models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class PasswordVertification(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE )
+    token=models.CharField(max_length=300)
     

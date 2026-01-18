@@ -58,3 +58,12 @@ class LoginSerializer(serializers.Serializer):
 
 class PasswordMailSerializer(serializers.Serializer):
     email=serializers.CharField(write_only=True)
+    
+class NewPasswordSerializer(serializers.Serializer):
+    password=serializers.CharField(write_only=True)
+    second_password=serializers.CharField(write_only=True)
+    token=serializers.CharField(write_only=True)
+    def validate(self, attrs):
+        if attrs['password']!=attrs['second_password']:
+            raise serializers.ValidationError('password do not match')
+        return attrs

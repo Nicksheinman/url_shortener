@@ -1,5 +1,5 @@
-from .models import My_links, Anonim_link, EmailVertification
-from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer, ConfirmRegistartionSerializer, PasswordMailSerializer
+from .models import My_links, Anonim_link, EmailVertification, PasswordVertification
+from .serializer import LinkSerializer, RegisterSerializer, LoginSerializer, AnonimLinkSerializer, ConfirmRegistartionSerializer, PasswordMailSerializer, NewPasswordSerializer
 from .permissions import AnonimPermssion
 from rest_framework import viewsets, status, permissions, authentication, generics
 from rest_framework.response import Response
@@ -150,4 +150,22 @@ class passwordChangeSendEmail(APIView):
             return Response(status=200)
         
         except:
+            print('exc')
             return Response(status=200)
+        
+class PasswordVertify(APIView):
+    permission_classes=[permissions.AllowAny]
+    def post(self, request):
+        serializer=NewPasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            token=serializer.validated_data['token']
+            try:
+                password=PasswordVertification.objects.get(token=token)
+            except:
+                return HttpResponseNotFound('this token do not exist')
+            user=password.user
+            user.set_password(serializer.validated_data['password'])
+            user.save()
+            password.delete()
+            return Response('password change complete')
+        return Response(serializer.errors, status=400)

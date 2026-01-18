@@ -15,7 +15,7 @@ const Register = () => {
 
     const registerFunc=async (e)=>{
         e.preventDefault()
-        if (username.length>=5 && password===secondPassword && password>=7 &&buttonCheck===false) {
+        if (username.length>=5 && password===secondPassword && password.length>=7 &&buttonCheck===false) {
             setButtonCheck(true)
             const newMessage=await registerAPI(username,email ,password, secondPassword).catch()
             if (newMessage===true) {

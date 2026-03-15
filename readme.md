@@ -6,13 +6,14 @@ The project provides a simple interface to generate short links and manage them 
 The backend is built with Django REST Framework, while the frontend uses React and Bootstrap to deliver a responsive user interface.
 
 ## Features
-- Create shortened URLs
-- Update existing links
-- Delete links
+- URL shortening and link management
+- User registration and authentication
+- Authenticated users can manage their own links
+- Support for anonymous link creation
 - RESTful API built with Django REST Framework
 - Session-based authentication
 - CSRF protection
-- Responsive UI built with React + Bootstrap
+- Responsive UI built with React and Bootstrap
 
 ## Tech Stack
 

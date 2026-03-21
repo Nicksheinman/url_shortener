@@ -9,7 +9,8 @@ const MyLinks = () => {
   const [message, setMessage]=useState('')
 
   const allLinks=async()=>{
-    const data=await linkGet()    
+    const data=await linkGet()   
+    console.log(data[0]) 
     setData(data)
     
   }

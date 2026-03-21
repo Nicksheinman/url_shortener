@@ -8,7 +8,7 @@ def anon_expiry():
     return timezone.now() + timedelta(days=1)
 
 class My_links(models.Model):
-    sourse_link=models.CharField(max_length=300)
+    sourse_link=models.CharField(max_length=2048)
     new_link=models.CharField(max_length=300)
     user=models.ForeignKey(User, on_delete=models.CASCADE, default=1,null=True, blank=True)
     def __str__(self):

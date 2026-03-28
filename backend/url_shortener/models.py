@@ -24,7 +24,7 @@ class My_links(models.Model):
             super().save(*args,**kwargs)
     
 class Anonim_link(models.Model):
-    sourse_link=models.CharField(max_length=300)
+    sourse_link=models.CharField(max_length=2048)
     new_link=models.CharField(max_length=300)
     
     expires_at=models.DateTimeField(db_index=True, null=False, default=anon_expiry)

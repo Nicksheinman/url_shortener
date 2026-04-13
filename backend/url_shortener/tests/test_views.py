@@ -13,7 +13,6 @@ def CSRF(db):
    client = APIClient()
    client.get('/api/csrf/')
    return client
-
     
 def test_login(user_test):
     client=APIClient()
@@ -50,7 +49,6 @@ def test_registrationVertification(CSRF, user_test):
     response=CSRF.post("/api/register_vertify/", {"token": "abc123"})
     assert response.status_code==200
     
-
 def test_logout(auth_client):
     auth_client.post('/api/logout/')
 

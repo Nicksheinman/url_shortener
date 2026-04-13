@@ -25,7 +25,7 @@ const MyLinkPost=({setMessage, allLinks})=>{
     return (
         <li className='list-group-item d-flex justify-content-between align-items-center'>
             <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" placeholder='enter your url' value={input} onChange={e=>{setInput(e.target.value)}}/>
-            <div className='btn btn-primary' onClick={postLink}>submit</div>
+            <button className="btn btn-primary" onClick={postLink}>Submit</button>
         </li>
     )
 }

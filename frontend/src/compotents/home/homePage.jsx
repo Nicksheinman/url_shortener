@@ -21,7 +21,7 @@ const HomePage = () => {
   return (
     <div className=''>
       <div className='container'>
-        <h5 className='text-justify-content '>A simple and fast URL shortener built with Django and React. Create short links, share them easily, and track their usage</h5>
+        <h5 className='text-justify-content '>A simple URL shortener built with Django and React. Generate short links, manage them, and share them easily.</h5>
         {user!=true && 
         <div className="input-group w-75 mb-5 mt-5">
             <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" onChange={e=>setInputUrl(e.target.value)} value={inputUrl} />

@@ -39,11 +39,11 @@ const Login = () => {
             {message && <div className='bg-warning border border-dark text-light text-center p-3'>{message}</div>}
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
-                <input className="form-control"  onChange={e=>{setUsername(e.target.value)}}/>
+                <input className="form-control" id='username'  onChange={e=>{setUsername(e.target.value)}}/>
             </div>
             <div className="mb-3">
                 <label htmlFor="Password" className="form-label">Password</label>
-                <input type="password" className="form-control" onChange={e=>{setPassword(e.target.value)}}/>
+                <input type="password" className="form-control" id='password' onChange={e=>{setPassword(e.target.value)}}/>
             </div>
             <button type="submit" className="btn btn-primary">Login</button><br></br>
             <button type="submit" className="btn btn-primary" onClick={e=>{forgotPassword(e)}}>Forgot your password?</button>

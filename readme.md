@@ -1,19 +1,19 @@
 # URL Shortener
 
 A full-stack web application for creating and managing shortened URLs.
-The project provides a simple interface to generate short links and manage them through a REST API.
+The project provides a simple and clean interface to generate short links and manage them through a REST API.
 
 The backend is built with Django REST Framework, while the frontend uses React and Bootstrap to deliver a responsive user interface.
 
 ## Features
-- URL shortening and link management
-- User registration and authentication
-- Authenticated users can manage their own links
+- Create short links quickly and easily
+- Manage links for authenticated users
 - Support for anonymous link creation
-- RESTful API built with Django REST Framework
 - Session-based authentication
 - CSRF protection
-- Responsive UI built with React and Bootstrap
+- RESTful API built with Django REST Framework
+- Responsive UI with React and Bootstrap
+- Copy-to-clipboard functionality for generated links
 
 ## Tech Stack
 
@@ -26,6 +26,11 @@ The backend is built with Django REST Framework, while the frontend uses React a
 - JavaScript
 - React
 - Bootstrap
+
+### Testing
+- pytest
+- pytest-django
+- Playwright (E2E testing)
 
 ### Security
 - Session Authentication
@@ -46,3 +51,17 @@ Django REST API
 Database
 
 The frontend communicates with the backend through API endpoints to perform link management operations.
+
+## Installation
+
+### Backend
+- pip install -r requirements.txt
+- python manage.py migrate
+- python manage.py runserver
+
+### Frontend
+- npm install
+- npm run dev
+
+### Running Tests
+pytest

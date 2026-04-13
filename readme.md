@@ -13,7 +13,6 @@ The backend is built with Django REST Framework, while the frontend uses React a
 - CSRF protection
 - RESTful API built with Django REST Framework
 - Responsive UI with React and Bootstrap
-- Copy-to-clipboard functionality for generated links
 
 ## Tech Stack
 

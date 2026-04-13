@@ -13,7 +13,7 @@ def test_create_anonim_link(page):
 def test_login(page):
     page.goto("http://127.0.0.1:5173/login")
     
-    page.fill("input[id='username']", "testuser1")
+    page.fill("input[id='username']", "testuser")
     page.fill("input[id='password']", "1234567")
     page.get_by_role("button", name="Login").click()
     
@@ -23,7 +23,7 @@ def test_login(page):
 def logged_in_page(page):
     page.goto("http://127.0.0.1:5173/login")
     
-    page.fill("input[id='username']", "testuser1")
+    page.fill("input[id='username']", "testuser")
     page.fill("input[id='password']", "1234567")
     page.get_by_role("button", name="Login").click()
 

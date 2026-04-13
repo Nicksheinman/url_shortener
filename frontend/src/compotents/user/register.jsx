@@ -8,7 +8,7 @@ const Register = () => {
     const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
     const [secondPassword, setSecondPassword]= useState("");
-    const [message, setMessage]=useState("");
+    const [message, setMessage]=useState("Username must be at least 5 characters long and password must be at least 7 characters long.");
     const [buttonCheck, setButtonCheck]=useState(false)
     
 

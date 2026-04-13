@@ -87,11 +87,13 @@ def test_linkCreate(auth_client):
     assert (links.data)[0]['sourse_link']=="https://www.youtube.com/"
     
 def test_linkDelete(links_create):
-    links_create.delete('/api/links/1/')
-    
-    links=links_create.get('/api/links/').data
-   
-    assert len(links)==0
+    links = links_create.get('/api/links/').data
+    link_id = links[0]['id']
+
+    links_create.delete(f'/api/links/{link_id}/')
+
+    links = links_create.get('/api/links/').data
+    assert len(links) == 0
 
 def test_get_csrf_cookie():
     client = APIClient()

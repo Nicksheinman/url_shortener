@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import dj_database_url
 
 load_dotenv()
 
@@ -73,14 +74,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv("ENGINE"),
-        'NAME':  os.getenv('NAME'),
-        'USER': os.getenv("USER"),
-        'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': os.getenv("HOST"),
-        'PORT': os.getenv("PORT"),
-    }
+    'default': dj_database_url.parse(
+        os.getenv("DATABASE_URL"),
+        default="postgresql://postgres:password@localhost:5432/url_shortener_db"
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [

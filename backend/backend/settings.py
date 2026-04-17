@@ -74,8 +74,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.getenv("DATABASE_URL"),
+    "default": dj_database_url.config(
         default="postgresql://postgres:password@localhost:5432/url_shortener_db"
     )
 }

@@ -1,5 +1,5 @@
 import './App.css'
-import Navbar from './compotents/navbar/navbar'
+import Navbar from './compotents/navbar/Navbar'
 import { Route, Routes } from "react-router-dom";
 import HomePage from './compotents/home/homePage'
 import MyLinks from './compotents/myLinks/myLinks'

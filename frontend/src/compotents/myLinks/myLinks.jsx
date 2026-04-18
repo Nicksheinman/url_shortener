@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import linkGet from '../../api/link/linkGet.Js'
+import linkGet from '../../api/link/linkGet'
 import linkDelete from '../../api/link/linkDelete'
 import MyLinkPost from './myLinkPost'
 

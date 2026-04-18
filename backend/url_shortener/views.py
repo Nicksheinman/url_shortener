@@ -13,7 +13,7 @@ from .mail.send_email import send_email, send_email_password
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from rest_framework.exceptions import ValidationError
-
+from django.middleware.csrf import get_token
 
 
 class LinkViewSet(viewsets.ModelViewSet):
@@ -64,10 +64,14 @@ class RegisterVertify(APIView):
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRF(APIView):
-    permission_classes=[ permissions.AllowAny]
-    
+    permission_classes = [permissions.AllowAny]
+
     def get(self, request):
-        return Response({"success":"CSRF cookie set"})
+        csrf_token = get_token(request)
+        return Response({
+            "success": "CSRF cookie set",
+            "csrfToken": csrf_token
+        })
     
 class LoginView(APIView):
     permission_classes=[ permissions.AllowAny]

@@ -1,8 +1,8 @@
 import axios from "axios";
-
+import { API } from "./client";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: `${API}/api`,
   withCredentials: true,           
   xsrfCookieName: "csrftoken",  
   xsrfHeaderName: "X-CSRFToken",          

@@ -9,9 +9,15 @@ import Logout from './compotents/user/logout';
 import Email_confirm from './compotents/user/email_confirm';
 import ForgotPassword from './compotents/user/forgotPassword';
 import NewPassword from './compotents/user/newPassword';
+import getSCRF from './api/auth/csrf';
+import { useEffect } from 'react';
+
+
 
 function App() {
-
+  useEffect(()=>{
+    getSCRF()
+  }, [])
 
   return (
     <>

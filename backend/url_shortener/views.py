@@ -154,8 +154,7 @@ class passwordChangeSendEmail(APIView):
             return Response(status=200)
         
         except:
-            print('exc')
-            return Response(status=200)
+            return  Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 class PasswordVertify(APIView):
     permission_classes=[permissions.AllowAny]

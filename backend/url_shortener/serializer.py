@@ -29,6 +29,11 @@ class RegisterSerializer(serializers.Serializer):
         if attrs['password']!=attrs['second_password']:
             raise serializers.ValidationError('password do not match')
         return attrs
+    def validate_email(self, value):
+        if User.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("User with this email already exists.")
+        return value
+    
     def create(self, validated_data):
         validated_data.pop('second_password')
         user=User(

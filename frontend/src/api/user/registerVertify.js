@@ -1,5 +1,5 @@
 import api from "../api";
-
+import getSCRF from "../auth/csrf";
 
 const registerVertify=async (token)=>{
    await getSCRF()

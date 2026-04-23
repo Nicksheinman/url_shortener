@@ -1,5 +1,4 @@
-import api from "../../api/api";
-import csrfCheck from "../auth/csrfCheck";
+import api from "../api";
 
 
 const logoutAPI=async ()=>{

@@ -156,7 +156,7 @@ class checkLogin(APIView):
 #         except:
 #             return  Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class PasswordChangeSendEmail(APIView):
+class passwordChangeSendEmail(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):

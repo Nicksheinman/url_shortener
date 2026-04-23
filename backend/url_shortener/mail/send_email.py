@@ -29,9 +29,8 @@ def send_email(user):
 def send_email_password(user):
     token=str(uuid.uuid4())
     PasswordVertification.objects.update_or_create(user=user,defaults={'token':token})
-    EmailVertification.objects.create(user=user,token=token)
     frontend_url = os.getenv("FRONTEND_URL", "http://127.0.0.1:5173")
-    confirm_link = f"{frontend_url}/email_confirm?token={token}"
+    confirm_link = f"{frontend_url}/newPassword?token={token}"
     
     try:
 

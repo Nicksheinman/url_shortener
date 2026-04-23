@@ -140,53 +140,23 @@ class checkLogin(APIView):
             return Response({'message':False})
     
 
-# class passwordChangeSendEmail(APIView):
-#     permission_classes=[ permissions.AllowAny]
-    
-#     def post(self, request):
-#         serializer=PasswordMailSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         email = serializer.validated_data['email']
-        
-#         try:
-#             user=User.objects.get(email=email)
-#             send_email_password(user=user)
-#             return Response(status=200)
-        
-#         except:
-#             return  Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class passwordChangeSendEmail(APIView):
-    permission_classes = [permissions.AllowAny]
-
+    permission_classes=[ permissions.AllowAny]
+    
     def post(self, request):
-        serializer = PasswordMailSerializer(data=request.data)
+        serializer=PasswordMailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data['email']
-
-        try:
-            user = User.objects.get(email=email)
-            send_email_password(user=user)
-            return Response(status=status.HTTP_200_OK)
-
-        except User.DoesNotExist:
-            return Response(
-                {"email": "User with this email was not found."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        except User.MultipleObjectsReturned:
-            return Response(
-                {"email": "Multiple users with this email exist."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        except Exception as e:
-            return Response(
-                {"detail": str(e)},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
         
+        try:
+            user=User.objects.get(email=email)
+            send_email_password(user=user)
+            return Response(status=200)
+        
+        except:
+            return  Response(status=200)
+
+
 class PasswordVertify(APIView):
     permission_classes=[permissions.AllowAny]
     def post(self, request):

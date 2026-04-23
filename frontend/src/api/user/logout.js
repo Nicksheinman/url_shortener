@@ -3,7 +3,6 @@ import csrfCheck from "../auth/csrfCheck";
 
 
 const logoutAPI=async ()=>{
-    await csrfCheck()
     await api.post('logout/')
 }
 

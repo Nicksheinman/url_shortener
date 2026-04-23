@@ -2,6 +2,7 @@ import api from "../api";
 
 
 const registerVertify=async (token)=>{
+   await getSCRF()
    const res=await api.post('register_vertify/', {token:token})
    return res.data
 }

@@ -21,7 +21,7 @@ class LinkViewSet(viewsets.ModelViewSet):
     serializer_class=LinkSerializer
     
     def get_queryset(self):
-        return My_links.objects.all()
+        return My_links.objects.filter(self.request.user)
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 

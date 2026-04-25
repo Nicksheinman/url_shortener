@@ -36,7 +36,7 @@ class Anonim_link(models.Model):
         if is_new:
             with transaction.atomic():
                 super().save(*args, **kwargs)
-                self.new_link=base62_encode(self.id)
+                self.new_link=f"a{base62_encode(self.id)}"
                 super().save(update_fields=['new_link'])
         else:
             super().save(*args,**kwargs)

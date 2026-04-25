@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import LinkViewSet, RegisterUser, GetCSRF, LoginView, LogoutView, AnonimLinkView, AnonimSession, RedirectView, checkLogin, RegisterVertify, passwordChangeSendEmail, PasswordVertify
+from .views import LinkViewSet, RegisterUser, GetCSRF, LoginView, LogoutView, AnonimLinkView, AnonimSession, RedirectView, checkLogin, RegisterVertify, passwordChangeSendEmail, PasswordVertify, RedirectViewAnonim
 from django.urls import include
 from rest_framework.routers import DefaultRouter
 router=DefaultRouter()

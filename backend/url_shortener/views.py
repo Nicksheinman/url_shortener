@@ -131,8 +131,7 @@ class RedirectView(APIView):
         if obj_a:
             return HttpResponseRedirect(obj_a.sourse_link)
         else:
-            return HttpResponseNotFound("URl not found")
-        
+            return HttpResponseNotFound("URl not found") 
         
 class checkLogin(APIView):
     permission_classes=[ permissions.AllowAny]

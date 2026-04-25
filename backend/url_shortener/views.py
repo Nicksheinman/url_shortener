@@ -173,5 +173,5 @@ class PasswordVertify(APIView):
             user.set_password(serializer.validated_data['password'])
             user.save()
             password.delete()
-            return Response('password change complete')
+            return Response('Password updated successfully')
         return Response(serializer.errors, status=400)

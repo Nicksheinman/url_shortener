@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import loginAPI from '../../api/user/login'
 import { useState } from 'react'
 import { MyContext } from '../context/provider'
-
+import getSCRF from '../../api/auth/csrf'
 
 
 const Login = () => {
@@ -18,6 +18,7 @@ const Login = () => {
       const req=await loginAPI(username, password)
       if (req===true) {
         setUser(true);
+        await getSCRF()
         navigate('/myLinks')
       }
       else {

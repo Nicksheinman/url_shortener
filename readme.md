@@ -1,18 +1,22 @@
 # URL Shortener
 
-A full-stack web application for creating and managing shortened URLs.
-The project provides a simple and clean interface to generate short links and manage them through a REST API.
+Live Demo: https://url-shortener-six-xi-42.vercel.app/
 
-The backend is built with Django REST Framework, while the frontend uses React and Bootstrap to deliver a responsive user interface.
+A full-stack web application for creating and managing shortened URLs with support for both authenticated and anonymous users.
+
+The project was built with a strong focus on backend architecture, authentication flows, testing, and deployment reliability. It includes secure session-based authentication, email verification, password recovery, automated testing, and a fully deployed production environment.
 
 ## Features
 - Create short links quickly and easily
 - Manage links for authenticated users
 - Support for anonymous link creation
+- User registration with email verification
+- Password reset via email flow
 - Session-based authentication
-- CSRF protection
+- CSRF protection for secure requests
+- Responsive frontend built with React and Bootstrap
 - RESTful API built with Django REST Framework
-- Responsive UI with React and Bootstrap
+- Automated backend and end-to-end testing
 
 ## Tech Stack
 
@@ -20,6 +24,7 @@ The backend is built with Django REST Framework, while the frontend uses React a
 - Python
 - Django
 - Django REST Framework
+- PostgreSQL
 
 ### Frontend
 - JavaScript
@@ -31,9 +36,29 @@ The backend is built with Django REST Framework, while the frontend uses React a
 - pytest-django
 - Playwright (E2E testing)
 
+### Deployment
+- Render (Backend + PostgreSQL)
+- Vercel (Frontend)
+
 ### Security
 - Session Authentication
 - CSRF Protection
+- Email Verification
+- Password Recovery Flow
+
+## Testing
+
+### The project includes both backend and end-to-end testing:
+- API endpoint testing with pytest
+- Django integration testing with pytest-django
+- End-to-end UI testing with Playwright
+
+### Test coverage includes:
+- authentication flows
+- link creation/deletion
+- anonymous sessions
+- password reset flow
+- API behavior validation
 
 ## Architecture
 

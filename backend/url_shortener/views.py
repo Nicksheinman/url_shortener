@@ -14,14 +14,17 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from rest_framework.exceptions import ValidationError
 from django.middleware.csrf import get_token
+from rest_framework.permissions import IsAuthenticated
+
 
 
 class LinkViewSet(viewsets.ModelViewSet):
-    queryset=My_links.objects.all()
-    serializer_class=LinkSerializer
-    
+    serializer_class = LinkSerializer
+    permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         return My_links.objects.filter(user=self.request.user)
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
